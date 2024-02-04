@@ -143,5 +143,6 @@ public class MovieappApplication {
 	}
 
 	@RequestMapping(value="/")
-	public String helloStudents() { return "Hello Students to Spring Boot!" ;}
+	public String helloStudents() {
+		return "Hello Students to Spring Boot!" ;}
 }
