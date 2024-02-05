@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,8 +18,18 @@ public class MovieServiceImpl implements MovieService{
     public MovieDao movieDao;
 
     @Override
+    @Transactional // it will indicate all movies i.e. 10 movies either get stored in database or nothing i.e. Automic attribute is achieved
     public Movie acceptMovieDetails(Movie movie) {
         return movieDao.save(movie);
+    }
+
+    @Override
+    public List<Movie> acceptMultipleMovieDetails(List<Movie> movies) {
+        //return list of movies
+        List<Movie> savedMovies = new ArrayList<>();
+        for(Movie movie : movies){
+            savedMovies.add(acceptMovieDetails(movie));
+        }
     }
 
     @Override
