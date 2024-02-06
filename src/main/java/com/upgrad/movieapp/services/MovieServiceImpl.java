@@ -30,6 +30,7 @@ public class MovieServiceImpl implements MovieService{
         for(Movie movie : movies){
             savedMovies.add(acceptMovieDetails(movie));
         }
+        return savedMovies;
     }
 
     @Override
